@@ -17,15 +17,19 @@ public class EnrollmentController {
         this.enrollmentService = enrollmentService;
     }
 
+    // create new enrollment with all details
     @PostMapping
     public Enrollment createEnrollment(@RequestBody Enrollment enrollment) {
         return enrollmentService.createEnrollment(enrollment);
     }
 
+    // find or show all details enrollments exist
     @GetMapping
     public List<Enrollment> findAllEnrollments(
             @RequestParam(defaultValue="0") int page,
-            @RequestParam(defaultValue="10") int size){
-       return enrollmentService.findAllEnrollments(page, size);
+            @RequestParam(defaultValue="10") int size,
+            @RequestParam(defaultValue="id") String sortBy,
+            @RequestParam(defaultValue="asc") String sortOrder){
+       return enrollmentService.findAllEnrollments(page, size, sortBy, sortOrder);
     }
 }
