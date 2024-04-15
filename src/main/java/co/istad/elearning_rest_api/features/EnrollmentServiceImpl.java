@@ -42,9 +42,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return enrollmentRepository.findEnrollmentByCode(code);
     }
 
+    //
     @Override
     public Enrollment updateEnrollmentProgress(String code, int progress) {
-        return null;
+        Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
+        if (enrollment != null) {
+            enrollment.setProgress(progress);
+            return enrollmentRepository.save(enrollment);
+        } else {
+            return null;
+        }
     }
 
     @Override
