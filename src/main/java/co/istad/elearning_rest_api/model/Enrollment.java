@@ -38,4 +38,7 @@ public class Enrollment {
 
     @Column(name="progress")
     private int progress;
+
+    public void setEnabled(boolean b) {
+    }
 }

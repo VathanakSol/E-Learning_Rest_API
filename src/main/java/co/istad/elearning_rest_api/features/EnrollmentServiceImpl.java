@@ -4,6 +4,7 @@ import co.istad.elearning_rest_api.features.dto.EnrollmentRequest;
 import co.istad.elearning_rest_api.features.dto.EnrollmentResponse;
 import co.istad.elearning_rest_api.model.Enrollment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -66,14 +67,26 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
     }
 
+    //
     @Override
     public boolean certifyEnrollment(String code) {
+        Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
+        if(enrollment != null && enrollment.getProgress() >= 100){
+            enrollment.setCertified(true);
+            enrollmentRepository.save(enrollment);
+            return true;
+        }
         return false;
     }
 
+    //
     @Override
     public void disableEnrollment(String code) {
-
+        Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
+        if (enrollment != null) {
+            enrollment.setEnabled(false);
+            enrollmentRepository.save(enrollment);
+        }
     }
 
 }
