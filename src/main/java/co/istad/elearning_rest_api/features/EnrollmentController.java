@@ -1,6 +1,6 @@
 package co.istad.elearning_rest_api.features;
 
-import co.istad.elearning_rest_api.features.dto.EnrollmentResponse;
+import co.istad.elearning_rest_api.features.dto.EnrollmentRequest;
 import co.istad.elearning_rest_api.model.Enrollment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,9 +42,14 @@ public class EnrollmentController {
     }
 
     // update progress of enrollment
-    @PutMapping("/{code}/progress/{progress}")
-    public Enrollment updateEnrollmentProgress(@PathVariable String code, @PathVariable int progress){
-        return enrollmentService.updateEnrollmentProgress(code, progress);
+    @PutMapping("/{code}/progress")
+    public ResponseEntity<Enrollment> updateEnrollmentProgress(@PathVariable String code, @RequestBody EnrollmentRequest enrollmentRequest){
+        Enrollment updatedEnrollment = enrollmentService.updateEnrollmentProgress(code, enrollmentRequest.getProgress());
+        if (updatedEnrollment != null) {
+            return ResponseEntity.ok(updatedEnrollment);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     // check progress of enrollment
@@ -53,11 +58,8 @@ public class EnrollmentController {
         return enrollmentService.getEnrollmentProgress(code);
     }
 
-    //
+    // check for getting certification when enrollment finish 100%
     @PutMapping("/{code}/is-certified")
-//    public boolean certifyEnrollment(@PathVariable String code){
-//        return enrollmentService.certifyEnrollment(code);
-//    }
     public ResponseEntity<String> certifyEnrollment(@PathVariable String code){
         boolean certified = enrollmentService.certifyEnrollment(code);
         if(certified){

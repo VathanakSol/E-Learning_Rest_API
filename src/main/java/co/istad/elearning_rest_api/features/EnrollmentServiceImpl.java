@@ -51,7 +51,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             enrollment.setProgress(progress);
             return enrollmentRepository.save(enrollment);
         } else {
-            return null;
+            throw new RuntimeException("Enrollment with code " + code + " not found");
         }
     }
 

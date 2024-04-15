@@ -1,6 +1,7 @@
 package co.istad.elearning_rest_api.features.dto;
 
 import lombok.Builder;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,11 @@ public record EnrollmentRequest(
     String studentUsername,
     boolean isCertified,
     LocalDateTime enrolledAt,
+    @Setter
     int progress,
     boolean status
 ) {
+    public int getProgress() {
+        return progress;
+    }
 }
