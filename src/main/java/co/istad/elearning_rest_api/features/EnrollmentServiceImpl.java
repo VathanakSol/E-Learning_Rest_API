@@ -36,9 +36,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return enrollmentPage.getContent();
     }
 
+    //  find or show enrollments by search via ID
     @Override
     public Enrollment findEnrollmentByCode(String code) {
-        return null;
+        return enrollmentRepository.findEnrollmentByCode(code);
     }
 
     @Override

@@ -32,4 +32,10 @@ public class EnrollmentController {
             @RequestParam(defaultValue="asc") String sortOrder){
        return enrollmentService.findAllEnrollments(page, size, sortBy, sortOrder);
     }
+
+    // find or show all details enrollments by ID
+    @GetMapping("/{code}")
+    public Enrollment findEnrollmentByCode(@PathVariable String code){
+        return enrollmentService.findEnrollmentByCode(code);
+    }
 }
