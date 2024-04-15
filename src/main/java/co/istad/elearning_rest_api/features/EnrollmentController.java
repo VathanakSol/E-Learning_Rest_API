@@ -39,8 +39,15 @@ public class EnrollmentController {
         return enrollmentService.findEnrollmentByCode(code);
     }
 
+    //
     @PutMapping("/{code}/progress/{progress}")
     public Enrollment updateEnrollmentProgress(@PathVariable String code, @PathVariable int progress){
         return enrollmentService.updateEnrollmentProgress(code, progress);
+    }
+
+    //
+    @GetMapping("{code}/progress")
+    public int getEnrollmentProgress(@PathVariable String code){
+        return enrollmentService.getEnrollmentProgress(code);
     }
 }
