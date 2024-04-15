@@ -4,6 +4,7 @@ package co.istad.elearning_rest_api.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -33,12 +34,19 @@ public class Enrollment {
     @Column(name="iscertified")
     private boolean isCertified;
 
-    @Column(name="enrolledat")
+    @CreationTimestamp
+    @Column(name="enrolledat", updatable = false)
     private LocalDateTime enrolledAt;
 
     @Column(name="progress")
     private int progress;
 
-    public void setEnabled(boolean b) {
+    @Column(name="status")
+    private boolean status;
+    public void setEnabled(boolean status) {
+        this.status = status;
     }
+
+
+
 }

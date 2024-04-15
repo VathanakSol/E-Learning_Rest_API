@@ -43,7 +43,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return enrollmentRepository.findEnrollmentByCode(code);
     }
 
-    //
+    // update progress of enrollment
     @Override
     public Enrollment updateEnrollmentProgress(String code, int progress) {
         Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
@@ -55,7 +55,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
     }
 
-    //
+    // check progress of enrollment
     @Override
     public int getEnrollmentProgress(String code) {
         Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
@@ -67,7 +67,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
     }
 
-    //
+    // check for certificate for who progress 100
     @Override
     public boolean certifyEnrollment(String code) {
         Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
@@ -79,12 +79,12 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return false;
     }
 
-    //
+    // disable enrollment
     @Override
     public void disableEnrollment(String code) {
         Enrollment enrollment = enrollmentRepository.findEnrollmentByCode(code);
         if (enrollment != null) {
-            enrollment.setEnabled(false);
+            enrollment.setEnabled(false); // Assuming there is an 'enabled' field in the Enrollment entity
             enrollmentRepository.save(enrollment);
         }
     }

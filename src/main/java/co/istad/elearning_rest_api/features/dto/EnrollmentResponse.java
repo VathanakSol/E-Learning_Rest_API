@@ -13,6 +13,7 @@ public record EnrollmentResponse(
     String studentUsername,
     boolean isCertified,
     LocalDateTime enrolledAt,
-    int progress
+    int progress,
+    boolean status
 ) {
 }

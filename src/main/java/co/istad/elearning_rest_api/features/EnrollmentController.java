@@ -41,13 +41,13 @@ public class EnrollmentController {
         return enrollmentService.findEnrollmentByCode(code);
     }
 
-    //
+    // update progress of enrollment
     @PutMapping("/{code}/progress/{progress}")
     public Enrollment updateEnrollmentProgress(@PathVariable String code, @PathVariable int progress){
         return enrollmentService.updateEnrollmentProgress(code, progress);
     }
 
-    //
+    // check progress of enrollment
     @GetMapping("{code}/progress")
     public int getEnrollmentProgress(@PathVariable String code){
         return enrollmentService.getEnrollmentProgress(code);
@@ -67,8 +67,8 @@ public class EnrollmentController {
         }
     }
 
-    //
-    @PutMapping("/{code}")
+    // disable enrollment
+    @PutMapping("/{code}/disable")
     public ResponseEntity<String> disableEnrollment(@PathVariable String code) {
         enrollmentService.disableEnrollment(code);
         return ResponseEntity.ok("Enrollment with code " + code + " has been disabled.");
