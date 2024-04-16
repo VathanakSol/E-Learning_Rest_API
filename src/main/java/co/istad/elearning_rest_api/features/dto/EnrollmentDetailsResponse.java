@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record EnrollmentResponse(
+public record EnrollmentDetailsResponse(
     Long id,
     String code,
     String courseTitle,

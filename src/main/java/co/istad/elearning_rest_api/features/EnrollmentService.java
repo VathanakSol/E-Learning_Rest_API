@@ -1,6 +1,5 @@
 package co.istad.elearning_rest_api.features;
 
-import co.istad.elearning_rest_api.features.dto.EnrollmentResponse;
 import co.istad.elearning_rest_api.model.Enrollment;
 
 import java.util.List;
