@@ -15,7 +15,7 @@ public class StudentRestController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        if (studentService.isHighSchoolIdBlockedForUniversity(student.getHighSchoolId())) {
+        if (studentService.isHighSchoolIdBlockedForUniversity(student.getHighSchool())) {
             return ResponseEntity.badRequest().build();
         }
 

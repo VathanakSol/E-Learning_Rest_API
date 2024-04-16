@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl extends StudentService {
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
@@ -47,7 +47,7 @@ public class StudentServiceImpl extends StudentService {
 
     @Override
     public boolean isHighSchoolIdBlockedForUniversity(String highSchoolId) {
-
-        return studentRepository.existsByHighSchoolId(highSchoolId);
+        // Implement the logic to check if the high school ID is blocked for university user ID
+        return false;
     }
 }
