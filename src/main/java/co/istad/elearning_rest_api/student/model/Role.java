@@ -1,8 +1,8 @@
 package co.istad.elearning_rest_api.student.model;
 
 import jakarta.persistence.*;
-import java.util.List;
 
+import java.util.List;
 @Entity(name="roles")
 public class Role {
     @Id
@@ -11,7 +11,9 @@ public class Role {
 
     private String name;
 
-    // relationship
+    //relationship
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
+
+
 }
