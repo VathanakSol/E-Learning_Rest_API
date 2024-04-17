@@ -15,11 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/enrollments")
 @Validated
-public class EnrollmentController {
+public class EnrollmentRestController {
     private final EnrollmentService enrollmentService;
 
     @Autowired
-    public EnrollmentController(EnrollmentService enrollmentService){
+    public EnrollmentRestController(EnrollmentService enrollmentService){
         this.enrollmentService = enrollmentService;
     }
 

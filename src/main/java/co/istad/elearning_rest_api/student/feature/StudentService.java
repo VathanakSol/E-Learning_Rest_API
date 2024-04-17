@@ -10,8 +10,8 @@ public interface StudentService {
     Page<Student> findAllStudents(int page, int size, String sortBy, String sortOrder);
     Student getStudentByUsername(String username);
     Student updateStudent(String username, Student student);
-    void deleteStudent(String username);
-    boolean isHighSchoolIdBlockedForUniversity(String highSchoolId);
+//    void deleteStudent(String username);
+//    boolean isHighSchoolIdBlockedForUniversity(String highSchoolId);
 
 
 }

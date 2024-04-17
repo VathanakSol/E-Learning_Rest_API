@@ -22,6 +22,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
+    // find all students
     @Override
     public Page<Student> findAllStudents(int page, int size, String sortBy, String sortOrder) {
         Sort.Direction direction = sortOrder.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
@@ -29,11 +30,13 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll(pageable);
     }
 
+    // find a student by username
     @Override
     public Student getStudentByUsername(String username) {
         return studentRepository.findByUsername(username);
     }
 
+    // update student's profile
     @Override
     public Student updateStudent(String username, Student student) {
         Student existingStudent = studentRepository.findByUsername(username);
@@ -44,17 +47,17 @@ public class StudentServiceImpl implements StudentService {
         return null;
     }
 
-    @Override
-    public void deleteStudent(String username) {
-        Student student = studentRepository.findByUsername(username);
-        if (student != null) {
-            studentRepository.delete(student);
-        }
-    }
-
-    @Override
-    public boolean isHighSchoolIdBlockedForUniversity(String highSchoolId) {
-        // Implement the logic to check if the high school ID is blocked for university user ID
-        return false;
-    }
+//    @Override
+//    public void deleteStudent(String username) {
+//        Student student = studentRepository.findByUsername(username);
+//        if (student != null) {
+//            studentRepository.delete(student);
+//        }
+//    }
+//
+//    @Override
+//    public boolean isHighSchoolIdBlockedForUniversity(String highSchoolId) {
+//        // Implement the logic to check if the high school ID is blocked for university user ID
+//        return false;
+//    }
 }
