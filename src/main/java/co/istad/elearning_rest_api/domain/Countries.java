@@ -15,13 +15,24 @@ import java.util.Set;
 public class Countries {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+
     private String flag;
+
+    @Column(nullable = false, length = 10)
     private String iso;
+
+    @Column(nullable = false, length = 60)
     private String name;
+
     private String nice_name;
+
+    @Column(nullable = false)
     private int num_code;
+
+    @Column(nullable = false)
     private int phone_code;
+
 
     @OneToMany(mappedBy = "country")
     private Set<Cities> cities;
