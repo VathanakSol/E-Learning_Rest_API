@@ -53,4 +53,20 @@ public class CategoryServiceImpl implements CategoryService{
             return null;
         }
     }
+
+    @Override
+    public boolean disableCategory(String alias) {
+        Category category = categoryRepository.findByAlias(alias);
+        if (category != null) {
+            category.setEnabled(false); // Assuming there's a boolean field named 'enabled' in your Category entity
+            categoryRepository.save(category);
+            return true; // Category disabled successfully
+        } else {
+            return false; // Category with the given alias not found
+        }
+    }
+
+
+
+
 }

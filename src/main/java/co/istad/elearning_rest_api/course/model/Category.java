@@ -28,4 +28,8 @@ public class Category {
 
     @Column(name="parentcategoryid")
     private int parentCategoryId;
+
+
+    public void setEnabled(boolean b) {
+    }
 }

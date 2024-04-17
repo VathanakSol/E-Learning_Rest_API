@@ -12,5 +12,5 @@ public interface CategoryService {
     public List<Category> findAllCategoriesWithSubcategories();
     public Category findCategoryByAlias(String alias);
     public Category updateCategory(String alias, CategoryUpdateRequest updateRequest);
-
+    public boolean disableCategory(String alias);
 }

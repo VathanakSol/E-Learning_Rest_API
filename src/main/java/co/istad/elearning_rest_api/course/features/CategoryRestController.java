@@ -1,7 +1,9 @@
 package co.istad.elearning_rest_api.course.features;
 
+import co.istad.elearning_rest_api.course.features.dto.CategoryResponse;
 import co.istad.elearning_rest_api.course.features.dto.CategoryUpdateRequest;
 import co.istad.elearning_rest_api.course.model.Category;
+import co.istad.elearning_rest_api.instructor.utils.BaseResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -66,6 +68,17 @@ public class CategoryRestController {
             return ResponseEntity.ok(updatedCategory);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    // disable category
+    @PutMapping("/{alias}/disable")
+    public ResponseEntity<String> disableCategory(@PathVariable("alias") String alias) {
+        boolean result = categoryService.disableCategory(alias);
+        if (result) {
+            return new ResponseEntity<>("Category disabled successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to disable category", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

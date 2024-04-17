@@ -43,6 +43,7 @@ public class User {
 
     @ManyToMany
     Set<Role> roles;
+    @Column()
     private Boolean isDeleted;
     private Boolean isVerified;
     private char nationalIdCard;
