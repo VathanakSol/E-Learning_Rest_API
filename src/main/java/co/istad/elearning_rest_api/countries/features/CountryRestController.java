@@ -17,8 +17,8 @@ public class CountryRestController {
     private CountryService countryService;
 
     @GetMapping
-    public List<CountryResponse> getAllCountries(@RequestParam(required = false) String sortBy,
+    public List<CountryResponse> getAllCountries(@RequestParam(required = false) String sortByName,
                                                  @RequestParam(required = false) String filterByName) {
-        return countryService.findAllCountries(sortBy, filterByName);
+        return countryService.findAllCountries(sortByName, filterByName);
     }
 }
