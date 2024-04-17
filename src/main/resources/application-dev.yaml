@@ -1,0 +1,20 @@
+server:
+  port: 7888
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  datasource:
+    username: postgres
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/e_learning_db
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+springdoc:
+  swagger-ui:
+    path: /
