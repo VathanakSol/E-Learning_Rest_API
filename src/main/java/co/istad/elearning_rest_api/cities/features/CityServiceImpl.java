@@ -7,13 +7,19 @@ import java.util.List;
 
 @Service
 public class CityServiceImpl implements CityService{
+
     @Override
     public List<CityResponse> findAllCities(String sortBy, String filterByName) {
         return null;
     }
 
     @Override
-    public List<CityResponse> findCitiesByCountry(String iso, String sortBy, String filterByName) {
+    public List<CityResponse> findAllCitiesByCountryId(String countryId) {
+        return null;
+    }
+
+    @Override
+    public List<CityResponse> findCitiesByCountry(String iso) {
         return null;
     }
 }

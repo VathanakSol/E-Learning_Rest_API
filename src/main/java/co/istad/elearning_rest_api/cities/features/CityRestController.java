@@ -20,9 +20,7 @@ public class CityRestController {
     }
 
     @GetMapping("/{iso}/cities")
-    public List<CityResponse> getCitiesByCountry(@PathVariable String iso,
-                                                 @RequestParam(required = false) String sortBy,
-                                                 @RequestParam(required = false) String filterByName) {
-        return cityService.findCitiesByCountry(iso, sortBy, filterByName);
+    public List<CityResponse> getCitiesByCountry(@PathVariable String iso) {
+        return cityService.findCitiesByCountry(iso);
     }
 }

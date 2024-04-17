@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface CityService {
     List<CityResponse> findAllCities(String sortBy, String filterByName);
-    List<CityResponse> findCitiesByCountry(String iso, String sortBy, String filterByName);
+    List<CityResponse> findAllCitiesByCountryId(String countryId);
+
+    List<CityResponse> findCitiesByCountry(String iso);
 }
