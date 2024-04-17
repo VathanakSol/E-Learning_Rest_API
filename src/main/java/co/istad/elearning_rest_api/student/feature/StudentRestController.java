@@ -2,6 +2,7 @@ package co.istad.elearning_rest_api.student.feature;
 
 import co.istad.elearning_rest_api.student.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,12 @@ public class StudentRestController {
 
     // view or check all exists students
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> students = studentService.getAllStudents();
-        return ResponseEntity.ok(students);
+    public Page<Student> getAllStudents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        return studentService.findAllStudents(page, size, sortBy, sortOrder);
     }
 
     // check student by username
