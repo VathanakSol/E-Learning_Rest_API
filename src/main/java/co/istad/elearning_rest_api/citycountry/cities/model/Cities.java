@@ -1,5 +1,6 @@
-package co.istad.elearning_rest_api.citycountry.domain;
+package co.istad.elearning_rest_api.citycountry.cities.model;
 
+import co.istad.elearning_rest_api.citycountry.countries.model.Countries;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "tbl_cities")
+@Table(name = "cities")
 public class Cities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,6 @@ public class Cities {
     @JoinColumn(name = "country_id")
     private Countries country;
 
-    @Column(nullable = false, length = 60)
+    @Column(nullable = false, length = 60, name="name")
     private String name;
 }
