@@ -1,5 +1,6 @@
 package co.istad.elearning_rest_api.course.features;
 
+import co.istad.elearning_rest_api.course.features.dto.CategoryUpdateRequest;
 import co.istad.elearning_rest_api.course.model.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -7,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -29,4 +32,25 @@ public class CategoryServiceImpl implements CategoryService{
         return categoryRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Category> findAllCategoriesWithSubcategories() {
+        return categoryRepository.findAllByParentCategoryIdNotNull();
+    }
+
+    @Override
+    public Category findCategoryByAlias(String alias) {
+        return categoryRepository.findByAlias(alias);
+    }
+
+    @Override
+    public Category updateCategory(String alias, CategoryUpdateRequest updateRequest) {
+        Category existingCategory = categoryRepository.findByAlias(alias);
+        if (existingCategory != null) {
+            existingCategory.setName(updateRequest.getName());
+            existingCategory.setIcon(updateRequest.getIcon());
+            return categoryRepository.save(existingCategory);
+        } else {
+            return null;
+        }
+    }
 }

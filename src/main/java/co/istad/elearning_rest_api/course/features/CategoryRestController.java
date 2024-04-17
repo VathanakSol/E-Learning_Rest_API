@@ -1,5 +1,6 @@
 package co.istad.elearning_rest_api.course.features;
 
+import co.istad.elearning_rest_api.course.features.dto.CategoryUpdateRequest;
 import co.istad.elearning_rest_api.course.model.Category;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -37,6 +40,34 @@ public class CategoryRestController {
         return categoryService.findAllCategories(page, size, sortBy, sortOrder);
     }
 
+    // Find all categories which have subcategories
+    @GetMapping("/parents")
+    public ResponseEntity<List<Category>> findAllCategoriesWithSubcategories() {
+        List<Category> categoriesWithSubcategories = categoryService.findAllCategoriesWithSubcategories();
+        return ResponseEntity.ok(categoriesWithSubcategories);
+    }
+
+    // Find a category by alias
+    @GetMapping("/{alias}")
+    public ResponseEntity<Category> findCategoryByAlias(@PathVariable String alias) {
+        Category category = categoryService.findCategoryByAlias(alias);
+        if (category != null) {
+            return ResponseEntity.ok(category);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Update a category's information
+    @PutMapping("/{alias}")
+    public ResponseEntity<Category> updateCategory(@PathVariable String alias, @RequestBody CategoryUpdateRequest updateRequest) {
+        Category updatedCategory = categoryService.updateCategory(alias, updateRequest);
+        if (updatedCategory != null) {
+            return ResponseEntity.ok(updatedCategory);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 
