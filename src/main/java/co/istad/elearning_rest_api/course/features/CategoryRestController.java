@@ -1,6 +1,6 @@
-package co.istad.elearning_rest_api.features;
+package co.istad.elearning_rest_api.course.features;
 
-import co.istad.elearning_rest_api.model.Category;
+import co.istad.elearning_rest_api.course.model.Category;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

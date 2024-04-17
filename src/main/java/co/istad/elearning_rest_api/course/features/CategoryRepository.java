@@ -1,8 +1,7 @@
-package co.istad.elearning_rest_api.features;
+package co.istad.elearning_rest_api.course.features;
 
-import co.istad.elearning_rest_api.model.Category;
+import co.istad.elearning_rest_api.course.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

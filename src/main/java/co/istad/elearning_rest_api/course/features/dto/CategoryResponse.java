@@ -1,4 +1,4 @@
-package co.istad.elearning_rest_api.dto;
+package co.istad.elearning_rest_api.course.features.dto;
 
 import lombok.Builder;
 

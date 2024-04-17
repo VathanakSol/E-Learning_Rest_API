@@ -1,6 +1,6 @@
-package co.istad.elearning_rest_api.features;
+package co.istad.elearning_rest_api.course.features;
 
-import co.istad.elearning_rest_api.model.Category;
+import co.istad.elearning_rest_api.course.model.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package co.istad.elearning_rest_api.model;
+package co.istad.elearning_rest_api.course.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
