@@ -15,7 +15,9 @@ public interface UserRepository extends JpaRepository<User,String> {
     int updateDeletedStatusById(String userId, boolean status);
     @Modifying
     @Transactional
-    @Query("UPDATE User u SET u.isVerified = :status WHERE u.id = :userId")
-    int updateVerifiedStatusById(String userId, boolean status);
+    @Query("UPDATE User u SET u.isVerified = :status WHERE u.username = :username")
+    int updateVerifiedStatusByUsername(String username, boolean status);
 
+
+    User findByUsername(String username);
 }

@@ -11,11 +11,11 @@ public interface UserService {
     UserResponse createUser(UserRequest userRequest);
 
     List<UserResponse> getAllUsers();
-    UserResponse getUserById(String id);
-    void deleteUserById(String id);
-    UserResponse updateUserById(String id, UserUpdateRequest userRequest);
+    UserResponse getUserByUsername(String username);
+    void deleteUserByUsername(String id);
+    UserResponse updateUserByUsername(String username, UserUpdateRequest userRequest);
 
-    UserResponse disableUser(String id);
-    UserResponse enableUser(String id);
+    UserResponse disableUser(String username);
+    UserResponse enableUser(String username);
 
 }

@@ -7,12 +7,12 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "users_tb")
+@Table(name = "users_tbl")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
-    private String id;
+    private Long id; // Changed from String to Long
     @Column(unique = true,nullable = false)
     private String address1;
     private String address2;
@@ -24,14 +24,13 @@ public class User {
     private String gender;
     private String givenName;
     @ManyToMany
-    Set<Role> roles;
-     private Boolean isDeleted;
-     private Boolean isVerified;
-     private char nationalIdCard;
-     private char phone_number;
-     private char profile;
-     private String username;
-     private char uuid;
-     private char verifyCode;
-
+    private Set<Role> roles;
+    private Boolean isDeleted;
+    private Boolean isVerified;
+    private char nationalIdCard;
+    private char phone_number;
+    private char profile;
+    private String username;
+    private char uuid;
+    private char verifyCode;
 }

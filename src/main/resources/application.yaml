@@ -2,4 +2,4 @@ spring:
   application:
     name: "E-Learning_Rest_API"
   profiles:
-    active: dev# configuration dev file
+    active: dev # configuration dev file

@@ -60,51 +60,84 @@ public class UserRestController {
         return BaseResponse.<UserResponse>createSuccess()
                 .setPayload(userService.createUser(userRequest));
     }
-
+    // Assuming you have a UserService method to handle sorting and filtering
     @GetMapping
-    @Operation(summary = "Get all users")
-    public BaseResponse<List<UserResponse>> getAllUser() {
+    public BaseResponse<List<UserResponse>> getAllUsers(
+            @RequestParam(required = false) String sort,
+            @RequestParam(required = false) String filter) {
         return BaseResponse.<List<UserResponse>>ok()
-                .setPayload(userService.getAllUsers());
-
+                 .setPayload(userService.getAllUsers());
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Get user by id")
-    public BaseResponse<UserResponse> getUserById(@PathVariable String id) {
+    @GetMapping("/{username}")
+    public BaseResponse<UserResponse> getUserByUsername(@PathVariable String username) {
         return BaseResponse.<UserResponse>ok()
-                .setPayload(userService.getUserById(id));
+                .setPayload(userService.getUserByUsername(username));
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Delete user by id")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public BaseResponse<?> deleteUserById(@PathVariable String id) {
-        userService.deleteUserById(id);
+    @PutMapping("/{username}/disable")
+    public BaseResponse<UserResponse> disableUserByUsername(@PathVariable String username) {
+        return BaseResponse.<UserResponse>ok()
+                .setPayload(userService.disableUser(username));
+    }
+
+    @PutMapping("/{username}/enable")
+    public BaseResponse<UserResponse> enableUserByUsername(@PathVariable String username) {
+        return BaseResponse.<UserResponse>ok()
+                .setPayload(userService.enableUser(username));
+    }
+
+    @DeleteMapping("/{username}")
+    public BaseResponse<?> deleteUserByUsername(@PathVariable String username) {
+        userService.deleteUserByUsername(username);
         return BaseResponse.ok();
     }
 
 
-    @PatchMapping("/{id}")
-    @Operation(summary = "Update user by id")
-    // configure swagger to provide the default request body for updating the user
-    public BaseResponse<UserResponse> updateUserByID(
-            @PathVariable() String id,@RequestBody UserUpdateRequest userRequest){
-        return BaseResponse.<UserResponse>updateSuccess()
-                .setPayload(userService.updateUserById(id,userRequest));
-    }
-
-
-    @PatchMapping("/{id}/disable")
-    public BaseResponse<UserResponse> disableUser(@PathVariable() String id){
-        return BaseResponse.<UserResponse>ok()
-                .setPayload(userService.disableUser(id));
-    }
-    @PatchMapping("/{id}/enable")
-    public BaseResponse<UserResponse> enableUser(@PathVariable String id){
-        return BaseResponse.<UserResponse>ok()
-                .setPayload(userService.enableUser(id));
-    }
+//    @GetMapping
+//    @Operation(summary = "Get all users")
+//    public BaseResponse<List<UserResponse>> getAllUser() {
+//        return BaseResponse.<List<UserResponse>>ok()
+//                .setPayload(userService.getAllUsers());
+//
+//    }
+//
+//    @GetMapping("/{id}")
+//    @Operation(summary = "Get user by id")
+//    public BaseResponse<UserResponse> getUserById(@PathVariable String id) {
+//        return BaseResponse.<UserResponse>ok()
+//                .setPayload(userService.getUserById(id));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    @Operation(summary = "Delete user by id")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public BaseResponse<?> deleteUserById(@PathVariable String id) {
+//        userService.deleteUserById(id);
+//        return BaseResponse.ok();
+//    }
+//
+//
+//    @PatchMapping("/{id}")
+//    @Operation(summary = "Update user by id")
+//    // configure swagger to provide the default request body for updating the user
+//    public BaseResponse<UserResponse> updateUserByID(
+//            @PathVariable() String id,@RequestBody UserUpdateRequest userRequest){
+//        return BaseResponse.<UserResponse>updateSuccess()
+//                .setPayload(userService.updateUserById(id,userRequest));
+//    }
+//
+//
+//    @PatchMapping("/{id}/disable")
+//    public BaseResponse<UserResponse> disableUser(@PathVariable() String id){
+//        return BaseResponse.<UserResponse>ok()
+//                .setPayload(userService.disableUser(id));
+//    }
+//    @PatchMapping("/{id}/enable")
+//    public BaseResponse<UserResponse> enableUser(@PathVariable String id){
+//        return BaseResponse.<UserResponse>ok()
+//                .setPayload(userService.enableUser(id));
+//    }
 
 }
 

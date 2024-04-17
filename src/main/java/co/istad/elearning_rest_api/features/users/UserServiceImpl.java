@@ -65,59 +65,58 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserById(String id) {
-        var user = userRepository.findById(id)
+    public UserResponse getUserByUsername(String username) {
+        var user = userRepository.findById(username)
                 .orElseThrow(() ->
-                        new NoSuchElementException("There is no user with id = " + id));
+                        new NoSuchElementException("There is no user with id = " + username));
         return userMapper.toUserResponse(user);
     }
 
     @Override
-    public void deleteUserById(String id) {
-        var user = userRepository.findById(id)
+    public void deleteUserByUsername(String username) {
+        var user = userRepository.findById(username)
                 .orElseThrow(() ->
-                        new NoSuchElementException("There is no user with id = " + id));
+                        new NoSuchElementException("There is no user with id = " + username));
         userRepository.delete(user);
 
     }
 
-
     @Override
-    public UserResponse updateUserById(String id, UserUpdateRequest userRequest) {
+    public UserResponse updateUserByUsername(String username, UserUpdateRequest userRequest) {
         var updateUser = userRepository
-                .findById(id)
+                .findById(username)
                 .orElseThrow(
-                        () -> new NoSuchElementException("There is no user with = " + id));
+                        () -> new NoSuchElementException("There is no user with = " + username));
         userMapper.updateUserFromRequest(updateUser, userRequest);
         return userMapper.toUserResponse(userRepository.save(updateUser));
     }
 
     @Override
-    public UserResponse disableUser(String id) {
-        int affectedRow = userRepository.updateVerifiedStatusById(id, true);
+    public UserResponse disableUser(String username) {
+        int affectedRow = userRepository.updateVerifiedStatusByUsername(username, true);
         if (affectedRow > 0) {
             return userMapper.toUserResponse(
-                    userRepository.findById(id)
+                    userRepository.findById(username)
                             .orElse(null));
         } else {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    "User with id = " + id + " doesn't exist ! "
+                    "User with id = " + username + " doesn't exist ! "
             );
         }
 
     }
     @Override
-    public UserResponse enableUser(String id) {
-        int affectedRow = userRepository.updateVerifiedStatusById(id, false);
+    public UserResponse enableUser(String username) {
+        int affectedRow = userRepository.updateVerifiedStatusByUsername(username, false);
         if (affectedRow > 0) {
             return userMapper.toUserResponse(
-                    userRepository.findById(id)
+                    userRepository.findById(username)
                             .orElse(null));
         } else {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    "User with id = " + id + " doesn't exist ! "
+                    "User with id = " + username + " doesn't exist ! "
             );
         }
     }
