@@ -1,5 +1,6 @@
-package co.istad.elearning_rest_api.domain;
+package co.istad.elearning_rest_api.countries.model;
 
+import co.istad.elearning_rest_api.cities.model.Cities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
