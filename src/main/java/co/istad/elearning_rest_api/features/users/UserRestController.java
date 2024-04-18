@@ -3,7 +3,6 @@ package co.istad.elearning_rest_api.features.users;
 
 import co.istad.elearning_rest_api.features.users.dto.UserRequest;
 import co.istad.elearning_rest_api.features.users.dto.UserResponse;
-import co.istad.elearning_rest_api.features.users.dto.UserUpdateRequest;
 import co.istad.elearning_rest_api.utils.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,28 +28,28 @@ public class UserRestController {
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     content = @Content(schema = @Schema(implementation = UserRequest.class),
                             examples = @ExampleObject(value = """
-                                {
-                                 "address1": "string",
-                                 "address2": "string",
-                                 "cityId": 1,
-                                 "countryId": 1,
-                                 "dob": "2000-01-01",
-                                 "email": "example@email.com",
-                                 "familyName": "Doe",
-                                 "gender": "male",
-                                 "givenName": "John",
-                                 "roles": [
-                                    "ADMIN", "STUDENT", "TEACHER"
-                                 ],
-                                 "nationalIdCard": "A123456789",
-                                 "phoneNumber": "1234567890",
-                                 "profile": "profileImage.jpg",
-                                 "uuid": "UUID123456789",
-                                 "verifyCode": "1234"
-                                }
-                                                        
-                                                        
-                                """)
+                                    {
+                                     "address1": "string",
+                                     "address2": "string",
+                                     "cityId": 1,
+                                     "countryId": 1,
+                                     "dob": "2000-01-01",
+                                     "email": "example@email.com",
+                                     "familyName": "Doe",
+                                     "gender": "male",
+                                     "givenName": "John",
+                                     "roles": [
+                                        "ADMIN", "STUDENT", "TEACHER"
+                                     ],
+                                     "nationalIdCard": "A123456789",
+                                     "phoneNumber": "1234567890",
+                                     "profile": "profileImage.jpg",
+                                     "uuid": "UUID123456789",
+                                     "verifyCode": "1234"
+                                    }
+                                                            
+                                                            
+                                    """)
 
                     )
             )
@@ -60,13 +59,14 @@ public class UserRestController {
         return BaseResponse.<UserResponse>createSuccess()
                 .setPayload(userService.createUser(userRequest));
     }
+
     // Assuming you have a UserService method to handle sorting and filtering
     @GetMapping
     public BaseResponse<List<UserResponse>> getAllUsers(
             @RequestParam(required = false) String sort,
             @RequestParam(required = false) String filter) {
         return BaseResponse.<List<UserResponse>>ok()
-                 .setPayload(userService.getAllUsers());
+                .setPayload(userService.getAllUsers());
     }
 
     @GetMapping("/{username}")
@@ -92,52 +92,5 @@ public class UserRestController {
         userService.deleteUserByUsername(username);
         return BaseResponse.ok();
     }
-
-
-//    @GetMapping
-//    @Operation(summary = "Get all users")
-//    public BaseResponse<List<UserResponse>> getAllUser() {
-//        return BaseResponse.<List<UserResponse>>ok()
-//                .setPayload(userService.getAllUsers());
-//
-//    }
-//
-//    @GetMapping("/{id}")
-//    @Operation(summary = "Get user by id")
-//    public BaseResponse<UserResponse> getUserById(@PathVariable String id) {
-//        return BaseResponse.<UserResponse>ok()
-//                .setPayload(userService.getUserById(id));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    @Operation(summary = "Delete user by id")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public BaseResponse<?> deleteUserById(@PathVariable String id) {
-//        userService.deleteUserById(id);
-//        return BaseResponse.ok();
-//    }
-//
-//
-//    @PatchMapping("/{id}")
-//    @Operation(summary = "Update user by id")
-//    // configure swagger to provide the default request body for updating the user
-//    public BaseResponse<UserResponse> updateUserByID(
-//            @PathVariable() String id,@RequestBody UserUpdateRequest userRequest){
-//        return BaseResponse.<UserResponse>updateSuccess()
-//                .setPayload(userService.updateUserById(id,userRequest));
-//    }
-//
-//
-//    @PatchMapping("/{id}/disable")
-//    public BaseResponse<UserResponse> disableUser(@PathVariable() String id){
-//        return BaseResponse.<UserResponse>ok()
-//                .setPayload(userService.disableUser(id));
-//    }
-//    @PatchMapping("/{id}/enable")
-//    public BaseResponse<UserResponse> enableUser(@PathVariable String id){
-//        return BaseResponse.<UserResponse>ok()
-//                .setPayload(userService.enableUser(id));
-//    }
-
 }
 
